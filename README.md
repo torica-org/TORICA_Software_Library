@@ -3,7 +3,7 @@
 ## SerialWeb
 - リポジトリを分離しました．（➔[SerialWeb](https://github.com/TORICA-Org/SerialWeb)）
 
-(以下，https://github.com/TORICA-23th/TORICA_libからの引用です)
+### (以下，https://github.com/TORICA-23th/TORICA_libからの引用です)
  ```#include <TORICA_SD.h>```のようにインクルードしてライブラリが使えるようになります．
  ![image](https://user-images.githubusercontent.com/29813058/231634508-bd923de0-9e5b-4151-83de-004a0a8e2795.png)
 
