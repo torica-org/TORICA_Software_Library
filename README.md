@@ -17,13 +17,18 @@ SDカードに文字列を書き込むためのライブラリです．
 #include <TORICA_SD.h>
 
 int cs_SD = 0;
-TORICA_SD my_torica_sd(cs_SD);
+// TORICA_SD my_torica_sd(cs_SD);
+TORICA_SD my_torica_sd; // これからは引数なしでインスタンス化
 
 char SD_BUF[256];
 
 void setup()
 {
-  my_torica_sd.begin();
+  /* -----------------
+    SPIの初期化処理など
+  -------------------*/
+
+  my_torica_sd.begin(cs_SD);
 }
 
 void loop()
