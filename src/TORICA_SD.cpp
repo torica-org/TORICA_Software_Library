@@ -85,7 +85,7 @@ void TORICA_SD::new_file() // ファイル名の連番`LOG00-00.CSV`を生成
   {
     while (1)
     {
-      sprintf(fileName, "LOG%02d-00.CSV", mainNum);
+      sprintf(fileName, "/LOG%02d-00.CSV", mainNum);
       if (!(SD.exists(fileName)))
       {
         subNum++;
@@ -96,7 +96,7 @@ void TORICA_SD::new_file() // ファイル名の連番`LOG00-00.CSV`を生成
   } 
   else // ファイル区切り
   {
-    sprintf(fileName, "LOG%02d-%02d.CSV", mainNum, subNum);
+    sprintf(fileName, "/LOG%02d-%02d.CSV", mainNum, subNum);
     subNum++;
   }
   file_time = millis();
