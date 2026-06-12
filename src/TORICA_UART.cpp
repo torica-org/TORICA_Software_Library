@@ -10,7 +10,7 @@ int TORICA_UART::readUART()
     buff[i_buff] = (char)serial->read();
     if (buff[i_buff] == '\n')
     {
-      buff[i_buff] == '\0';
+      buff[i_buff] = '\0';
       UART_data[0] = strtof(strtok(buff, ","), NULL);
       int i_UART_data;
       for (i_UART_data = 1; true; i_UART_data++)
