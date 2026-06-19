@@ -9,11 +9,14 @@ class TORICA_UART {
     }
 
     int readUART();
+    bool listenUART();
+    int parseBuffer(const char* input_buf);
     float UART_data[16];
+    char buff[8196]; // 公開用バッファ
 
   private:
     int i_buff = 0;
-    char buff[256];
+    char _buff[8196]; // 内部用バッファ
     char *p;
     Stream *serial;
 };
