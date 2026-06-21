@@ -45,17 +45,17 @@ bool TORICA_UART::listenUART()
 
   while (serial->available() > 0)
   {
-    has_signal = true; // 1文字でもデータが届いていれば信号ありと判定
-
     _buff[i_buff] = (char)serial->read();
+
     if (_buff[i_buff] == '\n')
     {
       _buff[i_buff] = '\0'; 
 
       // 1行完成すると公開用buffに内容をコピー
       memcpy(buff, _buff, i_buff + 1);
+      i_buff = 0; // 次の行のためにリセット
 
-      i_buff = 0;          // 次の行のためにリセット
+      return true;
     }
     else
     {
@@ -72,7 +72,7 @@ int TORICA_UART::parseBuffer(const char* input_buf)
   if (input_buf == NULL || input_buf[0] == '\0') return 0;
 
   // 安全のため作業用バッファにコピー
-  char work_buf[256];
+  char work_buf[1024];
   strncpy(work_buf, input_buf, sizeof(work_buf));
   work_buf[sizeof(work_buf) - 1] = '\0';
   
