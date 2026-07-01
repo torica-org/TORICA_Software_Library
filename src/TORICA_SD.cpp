@@ -32,6 +32,8 @@ bool TORICA_SD::begin() // for LEGACY
   SPI.setSCK(SD_SPI_SCK);
   SPI.setTX(SD_SPI_MOSI);
   if (!SD.begin(cs_SD, SPI))
+#elif defined(ESP32)
+  if (!SD.begin(cs_SD, SPI))
 #else
   // 上記2つのマイコン以外はこのプリプロセッサが実行される
   // SPIのRX(MISO),CS(CSn),SCK,TX(MOSI)はすべて設定する必要がある
@@ -54,9 +56,15 @@ bool TORICA_SD::begin() // for LEGACY
 bool TORICA_SD::begin(int _cs_SD) // for CORE
 {
   if(MODE != CORE) return false;
+
+  cs_SD = _cs_SD;
   
   // SPIのRX(MISO),CS(CSn),SCK,TX(MOSI)はすべて設定する必要がある
+  #if defined(ESP32)
+   if (!SD.begin(cs_SD, SPI))
+  #else
   if (!SD.begin(cs_SD))
+  #endif
   {
     SERIAL_USB.println("Card failed, or not present");
     SDisActive = false;

@@ -12,8 +12,14 @@ int TORICA_UART::readUART()
     {
       _buff[i_buff] = '\0';
 
+      char* token = strtok(_buff, ",");
+      if (token == NULL)
+      {
+        i_buff = 0;
+        continue; // データが空ならスキップして次の受信を待つ
+      }
+      UART_data[0] = strtof(token, NULL);
 
-      UART_data[0] = strtof(strtok(_buff, ","), NULL);
       int i_UART_data;
       for (i_UART_data = 1; true; i_UART_data++)
       {
